@@ -3,8 +3,7 @@ from sqlalchemy import URL
 from .supported_databases import supported_databases
 from .embeddings import get_embedding_engine
 from cognee.infrastructure.databases.graph.config import get_graph_context_config
-
-from functools import lru_cache
+from cognee.infrastructure.databases.utils.closing_lru_cache import closing_lru_cache
 
 
 def create_vector_engine(
@@ -37,7 +36,7 @@ def create_vector_engine(
     )
 
 
-@lru_cache
+@closing_lru_cache(maxsize=4)
 def _create_vector_engine(
     vector_db_provider: str,
     vector_db_url: str,
