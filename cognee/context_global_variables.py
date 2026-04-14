@@ -147,6 +147,9 @@ async def set_database_global_context_variables(dataset: Union[str, UUID], user_
         "vector_db_host": dataset_database.vector_database_connection_info.get("host", ""),
         "vector_db_username": dataset_database.vector_database_connection_info.get("username", ""),
         "vector_db_password": dataset_database.vector_database_connection_info.get("password", ""),
+        # Inherit subprocess mode from the global config so that per-dataset DB wrappers
+        # are also spawned as subprocesses when the feature is enabled.
+        "vector_db_subprocess_enabled": get_vectordb_config().vector_db_subprocess_enabled,
     }
 
     graph_config = {
@@ -165,6 +168,9 @@ async def set_database_global_context_variables(dataset: Union[str, UUID], user_
         ),
         "graph_dataset_database_handler": "",
         "graph_database_port": "",
+        # Inherit subprocess mode from the global config so that per-dataset DB wrappers
+        # are also spawned as subprocesses when the feature is enabled.
+        "graph_database_subprocess_enabled": get_graph_config().graph_database_subprocess_enabled,
     }
 
     storage_config = {
