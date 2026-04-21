@@ -27,8 +27,10 @@ packages = [{include = "cognee"}]
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
 openai = ">=1.0.0"
-pqlalchemy = ">=2.0embic = ">=1.12iofiles = ">=23.0.0"
-http.0"
+sqlalchemy = ">=2.0.0"
+alembic = ">=1.12.0"
+aiofiles = ">=23.0.0"
+httpx = ">=0.25.0"
 typing-extensions = ">=4.8.0"
 python-dotenv = ">=1.0.0"
 networkx = ">=3.0"
